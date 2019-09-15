@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "cq-websocket": "^2.0.2"
+    "cq-websocket": "^2.0.2",
+    "rss-parser": "^3.7.2"
   }
 }
