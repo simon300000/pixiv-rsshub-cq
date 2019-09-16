@@ -26,19 +26,6 @@ bot.once('socket.connect', async () => {
   }
 })
 
-const friends = [2241139100, 3151884870, 179528556]
-
-bot.on('request', async ({ user_id, sub_type, flag, request_type, group_id }) => {
-  if (friends.includes(user_id) && request_type === 'group' && sub_type === 'invite') {
-    await bot('set_group_add_request', { flag, sub_type })
-    console.log('join group', group_id)
-  }
-  if (friends.includes(user_id) && request_type === 'friend') {
-    await bot('set_friend_add_request', { flag })
-    console.log('add friend', user_id)
-  }
-})
-
 bot.on('socket.connecting', (_socketType, attempts) => {
   console.log('CONNECTING', attempts)
 })
