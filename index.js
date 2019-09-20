@@ -8,8 +8,8 @@ const wait = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 const bot = new CQWebSocket({
   host: '127.0.0.1',
-  accessToken: 'BY38d7hwd7',
-  port: 9000
+  accessToken: 'Prpr',
+  port: 6700
 })
 
 bot.once('socket.connect', async () => {
