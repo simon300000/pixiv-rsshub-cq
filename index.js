@@ -1,4 +1,5 @@
 /* eslint-disable camelcase */
+require('flat-map-polyfill')
 const { CQWebSocket, CQImage, CQText } = require('cq-websocket')
 
 const rss = require('./rss')
