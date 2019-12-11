@@ -1,5 +1,3 @@
-/* eslint-disable camelcase */
-require('flat-map-polyfill')
 const { CQWebSocket, CQImage, CQText } = require('cq-websocket')
 
 const rss = require('./rss')
@@ -9,7 +7,6 @@ const wait = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 const bot = new CQWebSocket({
   host: '127.0.0.1',
-  accessToken: 'Prpr',
   port: 6700
 })
 
