@@ -14,6 +14,10 @@ const bot = new CQWebSocket({
 const group_id = 123
 
 bot.once('socket.connect', async () => {
+  await bot('send_group_msg', {
+    group_id,
+    message: [new CQText('Hi, ich bin bot')]
+  })
   await rss(knownPictures)
   while (true) {
     await wait(1000 * 60 * 30)
