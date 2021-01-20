@@ -2,7 +2,7 @@ const cheerio = require('cheerio')
 const Parser = require('rss-parser')
 const parser = new Parser()
 
-const list = ['day_r18', 'day_male_r18', 'week_r18', 'week_r18g']
+const list = ['day_r18', 'day_male_r18', 'week_r18']
 
 const fetch = url => parser.parseURL(url)
   .catch(() => {
