@@ -22,7 +22,7 @@ bot.once('socket.connect', async () => {
       await wait(1000)
       const { author, title, link, images, feed } = items.shift()
       console.log(title, images.length)
-      const message = [new CQText(`${title} by ${author} from ${feed}\n${link}`), ...images.map(url => new CQImage(url))]
+      const message = [new CQText(`${title} by ${author} from ${feed}\n${link}\n`), ...images.map(url => new CQImage(url))]
       await bot('send_group_msg', {
         group_id,
         message
