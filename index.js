@@ -14,6 +14,7 @@ const bot = new CQWebSocket({
 const group_id = 123
 
 bot.once('socket.connect', async () => {
+  await rss(knownPictures)
   while (true) {
     const items = await rss(knownPictures)
     let w = 0
