@@ -14,6 +14,7 @@ const bot = new CQWebSocket({
 const group_id = 123
 
 bot.once('socket.connect', async () => {
+  await wait(1000 * 5)
   await bot('send_group_msg', {
     group_id,
     message: [new CQText('Hi, ich bin bot')]
