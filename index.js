@@ -16,6 +16,7 @@ const group_id = 123
 bot.once('socket.connect', async () => {
   await rss(knownPictures)
   while (true) {
+    await wait(1000 * 60 * 30)
     const items = await rss(knownPictures)
     let w = 0
     console.log('Pending', items.length)
@@ -31,7 +32,6 @@ bot.once('socket.connect', async () => {
       w++
     }
     console.log('done', w)
-    await wait(1000 * 60 * 30)
   }
 })
 
