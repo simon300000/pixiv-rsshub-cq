@@ -4,7 +4,13 @@ const parser = new Parser()
 
 const list = ['day_r18', 'day_male_r18', 'week_r18', 'week_r18g']
 
-const fetchAll = apis => apis.map(api => parser.parseURL(`https://rsshub.app/pixiv/ranking/${api}`))
+const fetch = url => parser.parseURL(url)
+  .catch(() => {
+    console.log('fetch error', url)
+    return fetch(url)
+  })
+
+const fetchAll = apis => apis.map(api => fetch(`https://rsshub.app/pixiv/ranking/${api}`))
 
 module.exports = async knownPictures => {
   const source = await Promise.all(fetchAll(list))

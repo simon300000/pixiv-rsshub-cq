@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 const { CQWebSocket, CQImage, CQText } = require('cq-websocket')
 
 const rss = require('./rss')
@@ -7,19 +8,28 @@ const wait = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 const bot = new CQWebSocket({
   host: '127.0.0.1',
-  port: 6700
+  port: 6701
 })
+
+const group_id = 123
 
 bot.once('socket.connect', async () => {
   while (true) {
     const items = await rss(knownPictures)
-    await Promise.all(items
-      .map(({ author, title, link, images, feed }) => [new CQText(`${title} by ${author} from ${feed}\n${link}`), ...images.map(url => new CQImage(url))])
-      .map(message => bot('send_group_msg', {
-        group_id: 829736941,
+    let w = 0
+    console.log('Pending', items.length)
+    while (items.length) {
+      await wait(1000)
+      const { author, title, link, images, feed } = items.shift()
+      console.log(title, images.length)
+      const message = [new CQText(`${title} by ${author} from ${feed}\n${link}`), ...images.map(url => new CQImage(url))]
+      await bot('send_group_msg', {
+        group_id,
         message
-      })))
-    console.log('done', items.length)
+      })
+      w++
+    }
+    console.log('done', w)
     await wait(1000 * 60 * 30)
   }
 })
